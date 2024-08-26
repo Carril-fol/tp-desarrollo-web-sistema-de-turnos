@@ -10,6 +10,13 @@
     --bg-white: #ffff;
     --gradient-white-to-gray: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
 }
+body, html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
 
 /* General displays */
 .navbar,
@@ -27,6 +34,8 @@
 .header {
     justify-content: space-between;
     border-bottom: 1px solid var(--bg-dark);
+    position: sticky;
+    top: 0;
 }
 .logo-header {
     width: 80px;
@@ -116,4 +125,110 @@
 .container-rights {
     margin-top: 50px;
     justify-content: space-evenly;
+}
+
+/*  Styles de la Seccion de Titulo */
+
+.titulo-container{
+    background: var(--bg-dark);
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.carrusel {
+    width: 100%;
+    margin: 0; 
+
+    animation: carrusel-animation 16s infinite  ease-in-out;
+}
+.carrusel ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 400%;
+}
+.carrusel li {
+    list-style: none;
+    width: 100%;
+}
+.carrusel img {
+    width: 100%;
+    filter: opacity(30%);
+}
+
+@keyframes carrusel-animation {
+    0%{margin-left: 0%;}
+    20%{margin-left: 0%;}
+
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+
+    75%{margin-left: -300%;}
+    95%{margin-left: -300%;}
+
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+.banner-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px 0 40px;
+}
+.banner-top a {
+    color: var(--bg-gray);
+    height: 5px;
+}
+.banner-top p {
+    color: var(--bg-whitish-gray);
+    font-size: 1.3em;
+}
+
+.banner-bot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    
+}
+.banner-bot h1 {
+    color: var(--bg-blue);
+    font-size: 7em;
+    margin: 0 0 30px 0 ;
+}
+.banner-bot h2 {
+    color: var(--bg-whitish-gray);
+    font-size: 2em;
+    margin: 20px 0;
+}
+.banner-bot a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: var(--bg-sky-blue);
+    color: var(--bg-dark-blue);
+    border-radius: 15px;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: 200ms ease-in-out;
+
+}
+.banner-bot a:hover {
+    background: var(--bg-blue);
+    transition: 200ms ease-in-out;
 }
