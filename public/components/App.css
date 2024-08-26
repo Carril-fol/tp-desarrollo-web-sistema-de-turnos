@@ -1,14 +1,17 @@
 /* Root */
 :root {
     font-family: "Montserrat", sans-serif;
-    --bg-dark: #060609;
-    --bg-dark-blue: #0c283a;
     --bg-sky-blue: #2badc8;
     --bg-blue: #2683ba;
+    --bg-dark-blue: #185076;
+    --bg-ocean-blue: #0c283a;
+    --bg-dark: #060609;
     --bg-gray: #71787b;
     --bg-whitish-gray: #e2e2e2;
     --bg-white: #ffff;
+    
     --gradient-white-to-gray: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+
 }
 body, html {
     padding: 0;
@@ -127,7 +130,7 @@ body, html {
     justify-content: space-evenly;
 }
 
-/*  Styles de la Seccion de Titulo */
+/* ---------------------------------------- Styles de la Seccion de Titulo */
 
 .titulo-container{
     background: var(--bg-dark);
@@ -221,7 +224,7 @@ body, html {
     height: 50px;
     box-sizing: border-box;
     background-color: var(--bg-sky-blue);
-    color: var(--bg-dark-blue);
+    color: var(--bg-ocean-blue);
     border-radius: 15px;
     font-size: 1.5em;
     text-decoration: none;
@@ -231,4 +234,85 @@ body, html {
 .banner-bot a:hover {
     background: var(--bg-blue);
     transition: 200ms ease-in-out;
+}
+
+/* ---------------------------------------- Styles de la Seccion de Comentarios */
+
+
+.comentarios-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-whitish-gray);
+    width: 100%;
+    height: 100vh;
+}
+.comentarios-top {
+    margin-top: 100px;
+}
+.comentarios-top h2 {
+    font-size: 4em;
+    margin: 0;
+    color: var(--bg-sky-blue);
+    letter-spacing: 0.1em;
+}
+.comentarios-bot {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 70%;
+    background-color: var(--bg-dark-blue);
+    color: var(--bg-whitish-gray);
+    border: 3px solid var(--bg-blue);
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px var(--bg-dark);
+}
+.box>img {
+    width: 50px;
+    height: 50px;
+    margin: 20px 0 0 20px;
+}
+.box>p {
+    margin: 0 20px;
+}
+.cliente {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+.cliente p {
+    text-transform: uppercase;
+    font-size: 1.3em;
+
+}
+.cliente-foto {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.cliente1 img {
+    transform: scale(23%);
+}
+.cliente2 img {
+    transform: scale(45%);
+    position: relative;
+    top: 23px;
+}
+.cliente3 img {
+    transform: scale(30%);
+    position: relative;
+    top: 15px;
 }
