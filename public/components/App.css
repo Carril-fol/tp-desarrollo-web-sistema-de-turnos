@@ -73,6 +73,25 @@ body, html {
     background: var(--bg-white);
 }
 
+/* Section WhatWeDO */
+
+.container-information-section {
+    display: flex;
+    gap: 20px;
+}
+.container-information-section>div:first-child {
+    display: flexbox;
+    align-content: center;
+}
+.container-information-section>div:last-child {
+    box-sizing: border-box;
+    border: 3px solid var(--bg-ocean-blue);
+    padding: 20px 30px 20px 20px;
+}
+.container-information-section li{
+    margin-top: 10px;
+}
+
 /* Sections landing page */
 .container-section-what-we-do {
     justify-content: center;
