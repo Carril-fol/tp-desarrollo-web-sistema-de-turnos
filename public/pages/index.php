@@ -15,6 +15,7 @@
         include("../components/landingPage/seccion-titulo.html");
         include("../components/common/header.html");
         include("../components/landingPage/whatWeDo.html");
+        include("../components/landingPage/seccion-nosotros.html");
         include("../components/landingPage/seccion-comentarios.html");
     ?>
 
