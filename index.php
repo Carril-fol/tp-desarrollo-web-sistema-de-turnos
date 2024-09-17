@@ -15,6 +15,7 @@
         include("components/landingPage/seccion-titulo.html");
         include("components/landingPage/seccion-que-hacemos.html");
         include("components/landingPage/seccion-comentarios.html");
+        include("components/landingPage/seccion-nosotros.html");
     ?>
 </body>
 </html>

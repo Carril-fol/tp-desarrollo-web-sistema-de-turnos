@@ -73,11 +73,15 @@ body, html {
     background: var(--bg-white);
 }
 
-/* Section WhatWeDO */
+/* Section QUE HACEMOS */
 
 .container-information-section {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
 }
 .container-information-section>div:first-child {
     display: flexbox;
@@ -113,13 +117,13 @@ body, html {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin-top: 40px;
-    margin-right: 50px;
 } 
 .container-information {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin: 0 20px;
+    text-align: center;
 }
 .container-information h2,
 .container-information p,
@@ -145,6 +149,13 @@ body, html {
 .container-rights {
     margin-top: 50px;
     justify-content: space-evenly;
+}
+.container-image-information-social-media {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    column-gap: 50px;
 }
 
 /* ---------------------------------------- Styles de la Seccion de Titulo */
@@ -228,10 +239,15 @@ body, html {
     font-size: 7em;
     margin: 0 0 30px 0 ;
 }
+@media (max-width: 425px){
+    .banner-bot h1 {
+        font-size: 4em;
+    }
+}
 .banner-bot h2 {
     color: var(--bg-whitish-gray);
     font-size: 2em;
-    margin: 20px 0;
+    margin: 20px 15px;
 }
 .banner-bot a {
     display: flex;
@@ -260,18 +276,28 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: var(--bg-whitish-gray);
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    gap: 40px;
+
 }
 .comentarios-top {
-    margin-top: 100px;
+    margin: 80px 0;
 }
 .comentarios-top h2 {
     font-size: 4em;
     margin: 0;
     color: var(--bg-sky-blue);
     letter-spacing: 0.1em;
+    text-align: center;
+}
+
+@media (max-width: 675px){
+    .comentarios-top h2 {
+        font-size: 2em;
+    }
 }
 .comentarios-bot {
     display: flex;
@@ -279,18 +305,22 @@ body, html {
     align-items:center;
     width: 100%;
     height: 100%;
+    flex-wrap: wrap;
+    column-gap: 20px;
 }
 .box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
-    height: 70%;
+    min-width: 280px;
+    max-width: 320px;
+    height: 400px;
     background-color: var(--bg-dark-blue);
     color: var(--bg-whitish-gray);
     border: 3px solid var(--bg-blue);
     border-radius: 10px;
     box-shadow: 10px 10px 30px var(--bg-dark);
+    margin: 0 15px 30px 15px;
 }
 .box>img {
     width: 50px;
@@ -332,4 +362,38 @@ body, html {
     transform: scale(30%);
     position: relative;
     top: 15px;
+}
+
+/* ---------------------------------------- Styles de la Seccion de Nosotros */
+
+.nosotros-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+}
+.nosotros-container>article {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+
+}
+.nosotros-foto-container {
+    min-width: 290px;
+    max-width: 600px;
+    max-height: 400px;
+    overflow: hidden;
+}
+.nosotros-foto-container>img {
+    max-height: 100%;
+}
+.nosotros-texto {
+    min-width: 280px;
+    max-width: 600px;
+    margin: 0 20px;
 }
