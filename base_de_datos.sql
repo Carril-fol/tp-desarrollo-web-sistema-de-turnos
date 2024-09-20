@@ -1,6 +1,6 @@
-CREATE TABLE persona (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    dni BIGINT UNIQUE,
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dni INT UNIQUE,
     nombre VARCHAR(255),
     apellido VARCHAR(255),
     email VARCHAR(255),
@@ -9,24 +9,23 @@ CREATE TABLE persona (
 );
 
 CREATE TABLE medico (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-	persona_id BIGINT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+	id_user INT,
     matricula VARCHAR(255),
     especialidad VARCHAR(255),
-    FOREIGN KEY (persona_id) REFERENCES persona(id)
+    FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
 
 CREATE TABLE administrativo (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    persona_id BIGINT,
-    puesto VARCHAR(255),
-    FOREIGN KEY (persona_id) REFERENCES persona(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
 
-CREATE paciente (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    persona_id BIGINT,
+CREATE TABLE paciente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
     numero_de_obra_social BIGINT,
-    es_socio BOOL,
-    FOREIGN KEY (persona_id) REFERENCES persona(id)
+    es_socio BOOLEAN,
+    FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
