@@ -35,16 +35,19 @@ function createAdministrative($formatUserDataCreated)
 }
 
 switch ($occupation) {
+    // TODO: Agregar cookie y session con informacion del usuario.
     case 'Administrativo':
         $userCreated = createUser($dni, $firstName, $lastName, $email, $password, $status);
         $administrativeCreated = createAdministrative($userCreated);
         break;
     case 'Medico':
+        // TODO: Logica para dar de alta usuario medicos
         break;
     case 'Paciente':
+        // TODO: Logica para dar de alta pacientes
         break;
 
-    header();
+    header('Location: ../../views/home.php');
     exit();
 }
 

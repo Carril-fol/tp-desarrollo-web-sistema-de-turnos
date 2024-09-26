@@ -1,7 +1,7 @@
 <?php
 // Imports
-require '../../../config.php';
-require '../../../models/PersonModel.php';
+require '../../config.php';
+require '../../models/UserModel.php';
 
 // Instance PersonModel
 $userModel = new UserModel;
