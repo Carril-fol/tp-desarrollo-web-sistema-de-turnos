@@ -386,11 +386,11 @@ body, html {
 .nosotros-foto-container {
     min-width: 290px;
     max-width: 600px;
-    max-height: 400px;
+    height: 400px;
     overflow: hidden;
 }
 .nosotros-foto-container>img {
-    max-height: 100%;
+    height: 100%;
 }
 .nosotros-texto {
     min-width: 280px;
