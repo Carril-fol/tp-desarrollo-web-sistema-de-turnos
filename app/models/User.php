@@ -1,20 +1,20 @@
 <?php
+
 require_once  __DIR__ . '/../config.php';
 
-class UserModel 
+class User
 {
     private $db;
+    public $dni;
+    public $firstName;
+    public $lastName;
+    public $email;
+    public $password;
+    public $status;
 
     public function __construct()
     {
         $this->db = (new Database())->conexion();
-    }
-
-    private function checkIfUserExists($dni)
-    {
-        $selectQuery = "SELECT * FROM usuario WHERE dni = '$dni'";
-        $resultQuery = $this->db->query($selectQuery);
-        return $resultQuery->num_rows > 0;
     }
 
     public function formatUserData($userData)
@@ -23,15 +23,14 @@ class UserModel
         return $formatData;
     }
 
-    public function createCookieData($dataUser)
+    private function checkIfUserExists($dni): bool
     {
-        $timeExp = time() + 12345;
-        $cookieData = array('data'=>$dataUser, 'exp'=>$timeExp);
-        $cookie = setcookie('accessToken', json_encode($cookieData), $timeExp);
-        return $cookie;
+        $selectQuery = "SELECT dni FROM usuario WHERE dni = '$dni'";
+        $resultQuery = $this->db->query($selectQuery);
+        return $resultQuery->num_rows > 0;
     }
 
-    public function createUser($dni, $firstName, $lastName, $email, $password, $status)
+    public function createUser($dni, $firstName, $lastName, $email, $password, $status): bool|mysqli_result         
     {   
         $existsUser = $this->checkIfUserExists($dni);
         if (!$existsUser)
@@ -48,12 +47,18 @@ class UserModel
         }
     }
 
-    public function getUserByDni($dni)
+    public function getDniAndPasswordFromUserByDni($dni): bool|mysqli_result
     {
-        $selectQuery = "SELECT * FROM usuario WHERE dni = '$dni'";
+        $selectQuery = "SELECT dni, contraseña FROM usuario WHERE dni = '$dni'";
+        $resultQuery = $this->db->query($selectQuery);
+        return $resultQuery;
+    }
+
+    public function getDataFromUserByDni($dni)  
+    {
+        $selectQuery = "SELECT dni, nombre, apellido, email, estado FROM usuario WHERE dni = '$dni'";
         $resultQuery = $this->db->query($selectQuery);
         return $resultQuery;
     }
 }
 
-?>
