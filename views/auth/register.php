@@ -1,8 +1,3 @@
-<?php
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +8,8 @@
 </head>
 <body class="formularios">
     <h1>Formulario de Registro de usuario</h1>
-    <form action="../../controllers/auth/RegisterUsersController.php" method="POST">
+    <!-- <form action="../../controllers/auth/RegisterUsersController.php" method="POST"> -->
+    <form action="../../controllers/auth/RegisterUsersController2.php" method="POST">
         <input type="text" name="firstName" placeholder="Nombre"/>
         <input type="text" name="lastName" placeholder="Apellido"/>
         <input type="text" name="dni" placeholder="DNI" pattern="^\d{8}$" title="El DNI debe tener 8 dígitos." required/>

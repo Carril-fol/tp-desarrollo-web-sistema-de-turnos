@@ -8,7 +8,8 @@
 </head>
 <body class="formularios">
     <h1>Formulario de ingreso</h1>
-    <form action="../../controllers/auth/LoginController.php" method="POST">
+    <!-- <form action="../../controllers/auth/LoginController.php" method="POST"> -->
+    <form action="../../controllers/auth/LoginController2.php" method="POST">
         <input type="text" name="dni" placeholder="DNI"/>
         <input type="text" name="password" placeholder="Password"/>
         <input type="submit" value="Iniciar Sesion">
