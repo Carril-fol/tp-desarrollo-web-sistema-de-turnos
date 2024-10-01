@@ -35,12 +35,10 @@ class Auth extends Controller
         if (!$userData) {
             return false;
         }
-
         $userDataFormatedArray = $this->userModel->formatUserData($userData);
         if (!password_verify($password, $userDataFormatedArray[1])) {
             return false;
         }
-
         return true;
     }
 
@@ -58,6 +56,45 @@ class Auth extends Controller
             } else {
                 $_SESSION['error_message'] = 'DNI o contraseña incorrectos.';
             }
+        }
+    }
+    
+    private function formatFieldRegister()
+    {
+        require_once __DIR__ . '/../views/auth/register.php';
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $arrayField = $_POST;
+            return $arrayField;
+        }
+    }
+
+    private function creatingInBaseOccupation($occupationField)
+    {
+        switch ($occupationField['occupation']) {
+            case 'Medico':
+                # TODO: Agregar modelo de medico
+                break;
+            case 'Administrativo':
+                # TODO: Agregar modelo de medico
+                break;
+            case 'Paciente':
+                # TODO: Agregar modelo de medico
+                break;
+        }
+    }
+
+    public function register()
+    {
+        require_once __DIR__ . '/../views/auth/register.php';
+        $fieldsPostForm = $this->formatFieldRegister();
+        if ($fieldsPostForm['password'] === $fieldsPostForm['confirmPassword']) {
+            $userCreated = $this->userModel->createUser(
+                $fieldsPostForm['dni'],
+                $fieldsPostForm['firstName'],
+                $fieldsPostForm['lastName'],
+                $fieldsPostForm['email'],
+                password_hash($fieldsPostForm['password'], PASSWORD_BCRYPT)
+            );
         }
     }
 }

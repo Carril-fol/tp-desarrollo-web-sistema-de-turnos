@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../../controllers/auth/RegisterUsersController.php" method="POST">
+    <form method="POST">
         <input type="text" name="firstName" placeholder="Nombre"/>
         <input type="text" name="lastName" placeholder="Apellido"/>
         <input type="text" name="dni" placeholder="DNI" pattern="^\d{8}$" title="El DNI debe tener 8 dígitos." required/>
