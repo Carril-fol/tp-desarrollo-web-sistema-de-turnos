@@ -9,8 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/App.css">
 </head>
-<body>
+<body class="formularios">
+    <h1>Formulario de Registro de usuario</h1>
     <form action="../../controllers/auth/RegisterUsersController.php" method="POST">
         <input type="text" name="firstName" placeholder="Nombre"/>
         <input type="text" name="lastName" placeholder="Apellido"/>
@@ -25,6 +27,7 @@
         <input type="password" name="password" placeholder="Contraseña"  required/>
         <input type="password" name="confirmPassword" placeholder="Confirmar contraseña" required/>        
         <input type="submit" value="Dar de alta">
+        <a href="login.php" style="color:white;">volver al Ingreso</a>
     </form>
 </body>
 </html>
