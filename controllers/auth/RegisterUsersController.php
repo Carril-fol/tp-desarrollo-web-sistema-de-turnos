@@ -7,7 +7,6 @@
     $userModel = new User;
 
     try {
-        // Información del formulario
         $firstName = htmlentities(addslashes(strtoupper($_POST['firstName'])));
         $lastName = htmlentities(addslashes(strtoupper($_POST['lastName'])));
         $occupation = strtoupper($_POST['occupation']);
@@ -60,8 +59,7 @@
         }
     
     } catch (Exception $e) {
-        // Captura de errores
-        $_SESSION['error'] = $e->getMessage(); // Usar $e->getMessage()
+        $_SESSION['error'] = $e->getMessage();
         header("Location: ../../views/auth/register.php");
         exit();
     }
