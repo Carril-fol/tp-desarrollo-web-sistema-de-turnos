@@ -8,13 +8,19 @@ class Database
     public string $password = "";
     public int $port = 3306;
 
-    function conexion() {
-        $connection = new mysqli($this->serverName, $this->username, $this->password, $this->databaseName, $this->port);
-        if ($connection -> connect_error) {
-            die("Connection fail: " . $connection -> connect_error);
-        } else {
+    function connection(){
+        try {
+            $connection = new PDO(
+                "mysql:host={$this->serverName};dbname={$this->databaseName};port={$this->port}", 
+                $this->username, 
+                $this->password
+            );
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
+        } catch (PDOException $error) {
+            echo "Conexion fallida: " . $error->getMessage();
         }
+        
     }
 }
 
