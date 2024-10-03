@@ -1,51 +1,69 @@
 <?php
-// Imports
-require '../../config.php';
-require '../../models/UserModel.php';
+    // Importes
+    require '../../config.php';
+    require '../../models/User.php';
 
-// Instance UserModel
-$userModel = new UserModel;
+    // Instancia de modelo de usuario
+    $userModel = new User;
 
-// Data from the view.
-$firstName = strtoupper($_POST['firstName']);
-$lastName = strtoupper($_POST['lastName']);
-$occupation = strtoupper($_POST['occupation']);
-$dni = $_POST['dni'];
-$email = strtolower($_POST['email']);
-$password = $_POST['password'];
-$confirmPassword = $_POST['confirmPassword'];
-$status = 'ALTA';
+    try {
+        // Información del formulario
+        $firstName = htmlentities(addslashes(strtoupper($_POST['firstName'])));
+        $lastName = htmlentities(addslashes(strtoupper($_POST['lastName'])));
+        $occupation = strtoupper($_POST['occupation']);
+        $dni = htmlentities(addslashes($_POST['dni']));
+        $email = strtolower($_POST['email']);
+        $password = htmlentities(addslashes($_POST['password']));
+        $confirmPassword = htmlentities(addslashes($_POST['confirmPassword']));
+        
+        if ($password != $confirmPassword) {
+            throw new Exception('Las contraseñas no son iguales.');
+        }
+        $passwordHashed = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
-// Functions 
-function createUser($dni, $firstName, $lastName, $email, $password, $status)
-{
-    global $userModel;
-    $createUser = $userModel->createUser($dni, $firstName, $lastName, $email, $password, $status);
-    $getUserCreated = $userModel->getUserByDni($dni);
-    $formatUserDataCreated = $userModel->formatUserData($getUserCreated);
-    return $formatUserDataCreated;
-}
+        $userCreated = $userModel->createUser($dni, $firstName, $lastName, $email, $passwordHashed);
+        if (!$userCreated) {
+            throw new Exception('Error al crear el usuario.');
+        }
 
-function createAdministrative($formatUserDataCreated)
-{
-    require_once '../../models/AdministrativeModel.php';
-    $administrativeModel = new AdministrativeModel;
-    $userId = $formatUserDataCreated[0];
-    $createAdministrative = $administrativeModel->createAdministrative($userId);
-}
+        $getUserCreated = $userModel->getDataFromUserByDni($dni);
 
-switch ($occupation) {
-    case 'Administrativo':
-        $userCreated = createUser($dni, $firstName, $lastName, $email, $password, $status);
-        $administrativeCreated = createAdministrative($userCreated);
-        break;
-    case 'Medico':
-        break;
-    case 'Paciente':
-        break;
-
-    header();
-    exit();
-}
-
+        // Diferentes creaciónes de registros segun la ocupación de los usuarios
+        switch ($occupation) {
+            case 'ADMINISTRATIVO':
+                require_once '../../models/Administrative.php';
+                $administrativeModel = new Administrative;
+                $administrativeModel->createAdministrative($getUserCreated['id']);
+                break;
+            case 'MEDICO':
+                require_once '../../models/Medic.php';
+                $medicModel = new Medic;
+                $medicLicense = htmlentities(addslashes(strtoupper($_POST['medicLicense'])));
+                $medicSpeciality = htmlentities(addslashes(strtoupper($_POST['specialty'])));
+                $medicModel->createMedic(
+                    $getUserCreated['id'], 
+                    $medicLicense, 
+                    $medicSpeciality
+                );
+                break;
+            case 'PACIENTE':
+                require_once '../../models/Patient.php';
+                $patientModel = new Patient;
+                $patientNumberHealthInsurance = $_POST['numberHealthInsurance'];
+                $patientIsPartner = $_POST['isPartner'];
+                $patientModel->createPatient(
+                    $getUserCreated['id'], 
+                    $patientNumberHealthInsurance, 
+                    $patientIsPartner
+                );
+                break;
+        }
+    
+    } catch (Exception $e) {
+        // Captura de errores
+        $_SESSION['error'] = $e->getMessage(); // Usar $e->getMessage()
+        header("Location: ../../views/auth/register.php");
+        exit();
+    }
+    
 ?>

@@ -1,27 +1,36 @@
-<?php
-// Imports
-require '../../../config.php';
-require '../../../models/PersonModel.php';
+<?php 
+    // Importes
+    require '../../config.php';
+    require '../../models/User.php';
 
-// Instance PersonModel
-$userModel = new UserModel;
+    // Instancia de modelo
+    $userModel = new User;
 
-// Data from the view.
-$dni = $_POST['dni'];
-$password = $_POST['password'];
+    // Iniciar sesion
+    session_start();
 
-// Functions
-function authenticateUser($dni, $password)
-{
-    global $userModel;
-    $userData = $userModel->getUserByDni($dni);
-    $userDataFormatedArray = $userModel->formatUserData($userData);
-    $cookieUser = $userModel->createCookieData($userDataFormatedArray);
-    header('Location: ../../views/home.php');
-    exit();
-}
+    // Try - Catch
+    try {
+        // Información del formulario
+        $dni = htmlentities(addslashes($_POST["dni"]));
+        $password = htmlentities(addslashes($_POST["password"]));
 
-// Call function.
-authenticateUser($dni, $password);
+        $userDataLogin = $userModel->getDniAndPasswordFromUserByDni($dni);
+        $passwordHashed = $userDataLogin['contraseña'];
 
+        if (!password_verify($password, $passwordHashed)) {
+            throw new Exception("Las contraseñas no son iguales");
+        }
+        
+        $userDataLogged = $userModel->getDataFromUserByDni($dni);
+        $userModel->createCookieData($userDataLogged);
+
+        header("Location: ../../views/core/home.php");
+        exit();
+    }
+    catch (Exception $error) {
+        $_SESSION['error'] = $error;
+        header("Location: ../../views/auth/login.php");
+        exit();
+    }
 ?>
