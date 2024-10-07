@@ -37,7 +37,6 @@ body, html {
 .header {
     justify-content: space-between;
     border-bottom: 1px solid var(--bg-dark);
-    position: sticky;
     top: 0;
 }
 .logo-header {
@@ -401,8 +400,7 @@ body, html {
     margin: 0 20px;
 }
 
-
-
+/* 
 .formularios {
     background-color: var(--bg-dark-blue);
     display: flex;
@@ -435,3 +433,4 @@ body, html {
     border-radius: 10px;
     height: 40px;
 }
+*/

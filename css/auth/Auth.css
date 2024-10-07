@@ -1,0 +1,100 @@
+.section-formulario-login,
+.section-formulario-alta {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-login,
+.formulario-alta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: max-content;
+    padding: 15px;
+    border: 1px solid #dbd8e3;
+    border-radius: 10px;
+    box-shadow: 2px 2px #dbd8e3;
+}
+.formulario-login input,
+.formulario-alta input {
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid gray;
+    transition: 0.3s ease-in-out;
+}
+.formulario-login input:focus
+.formulario-alta input:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--bg-dark-blue);
+}
+
+.formulario-login button,
+.formulario-alta button {
+    padding: 12px;
+    border: 2px solid var(--bg-white);
+    font-weight: bold;
+    border-radius: 25px;
+    color: var(--bg-whitish-gray);
+    background: var(--bg-dark-blue);
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.formulario-login button:hover,
+.formulario-alta button:hover {
+    color: var(--bg-dark-blue);
+    border: 2px solid var(--bg-dark-blue);
+    background: var(--bg-white);
+}
+
+.formulario-login-logo-titulo,
+.formulario-alta-logo-titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.formulario-login-logo-titulo img,
+.formulario-alta-logo-titulo img {
+    width: 100px;
+    height: 100px;
+}
+
+.formulario-alta select {
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid gray;
+    transition: 0.3s ease-in-out;
+}
+
+.contenedor-opciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Añadir espacio entre los elementos */
+}
+
+.contenedor-opcion-socio {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Espacio entre el label y el checkbox */
+    width: 100%; /* O un valor fijo, como 200px */
+    border: 2px solid red;
+}
+
+.contenedor-opcion-socio label {
+    margin-right: 10px; /* Espacio entre el label y el checkbox */
+}

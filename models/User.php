@@ -10,7 +10,7 @@ class User
         $this->db = (new Database())->connection();
     }
 
-    private function checkIfUserExists($dni)
+    private function checkIfUserExists($dni): bool
     {   
         $paramsQuery = [':dni'=>$dni];
         $selectQuery = "SELECT dni FROM usuario WHERE dni = :dni";
@@ -26,27 +26,26 @@ class User
         setcookie('accessToken', json_encode($cookieData), $timeExp, "/");
     }
 
-    public function createUser($dni, $firstName, $lastName, $email, $password)
+    public function createUser($dni, $firstName, $lastName, $email, $password, $isSuperUser, $isStaff)
     {   
         $existsUser = $this->checkIfUserExists($dni);
         if ($existsUser) {
             return false;
         }
-
         $paramsQuery = [
             ":dni" => $dni, 
             ":firstName" => $firstName, 
             ":lastName" => $lastName, 
             ":email" => $email, 
-            ":password" => $password
+            ":password" => $password,
+            ":isSuperUser" => $isSuperUser,
+            ":isStaff" => $isStaff
         ];
-
-        $insertQuery = "INSERT INTO usuario (dni, nombre, apellido, email, contraseña, estado) 
-                        VALUES (:dni, :firstName, :lastName, :email, :password, 'ALTA')";
+        $insertQuery = "INSERT INTO usuario (dni, nombre, apellido, email, contraseña, estado, esSuperUsuario, esStaff) 
+            VALUES (:dni, :firstName, :lastName, :email, :password, 'ALTA', :isSuperUser, :isStaff)";
 
         $resultQuery = $this->db->prepare($insertQuery);
         $result = $resultQuery->execute($paramsQuery);
-
         if ($result) {
             return true;
         } else {

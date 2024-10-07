@@ -20,7 +20,7 @@
         }
         $passwordHashed = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
-        $userCreated = $userModel->createUser($dni, $firstName, $lastName, $email, $passwordHashed);
+        $userCreated = $userModel->createUser($dni, $firstName, $lastName, $email, $passwordHashed, false, false);
         if (!$userCreated) {
             throw new Exception('Error al crear el usuario.');
         }

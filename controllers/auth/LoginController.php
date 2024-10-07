@@ -3,11 +3,10 @@
     require '../../config.php';
     require '../../models/User.php';
 
+    session_start();
+
     // Instancia de modelo
     $userModel = new User;
-
-    // Iniciar sesion
-    session_start();
 
     // Try - Catch
     try {
