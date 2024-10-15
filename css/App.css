@@ -399,38 +399,3 @@ body, html {
     max-width: 600px;
     margin: 0 20px;
 }
-
-/* 
-.formularios {
-    background-color: var(--bg-dark-blue);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.formularios h1{
-    text-align: center;
-    color: var(--bg-white);
-}
-.formularios form {
-    background-color: var(--bg-ocean-blue);
-    display: flex;
-    flex-direction: column;
-    width: 75vw;
-    max-width: 400px;
-    min-width: 260px;
-    gap: 10px;
-    margin: 20px;
-    padding: 25px;
-}
-.formularios input{
-    font-size: 1.4em;
-    border-radius: 10px;
-    height: 40px;
-}
-.formularios select {
-    font-size: 1.4em;
-    border-radius: 10px;
-    height: 40px;
-}
-*/

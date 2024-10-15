@@ -1,0 +1,33 @@
+.seccion-home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container-table {
+    margin-top: 50px;
+}
+
+.container-buttons-table {
+    height: fit-content;
+    padding: 10px 5px 5px 5px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #71787b;
+}
+.container-buttons-table button {
+    padding: 12px;
+    font-size: medium;
+    border: 1px solid var(--bg-white);
+    font-weight: bold;
+    border-radius: 15px;
+    color: var(--bg-whitish-gray);
+    background: var(--bg-dark-blue);
+    transition: 0.1s;
+    cursor: pointer;
+}
+.container-buttons-table button:hover {
+    color: var(--bg-dark-blue);
+    border: 1px solid var(--bg-dark-blue);
+    background: var(--bg-white);
+}
