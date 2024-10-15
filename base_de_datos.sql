@@ -15,6 +15,7 @@ CREATE TABLE medico (
 	id_user INT,
     matricula VARCHAR(255),
     especialidad VARCHAR(255),
+    estado VARCHAR(255),
     FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
 
@@ -30,6 +31,18 @@ CREATE TABLE paciente (
     FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
 
+CREATE TABLE turno (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_medico INT,
+    fecha_atencion DATE,
+    fecha_creacion DATE,
+    horario TIME,
+    estado VARCHAR(255),
+    FOREIGN KEY (id_medico) REFERENCES medico(id),
+    FOREIGN KEY (id_user) REFERENCES usuario(id)
+)
+
 INSERT INTO usuario (dni, nombre, apellido, email, contraseña, estado, esSuperUsuario, esStaff) 
-    VALUES (44595596, "FOLCO", "CARRIL", "folco.carril@gmail.com", "$2a$12$T.WpBqM64hxGxJKdOM/8KOIz07uIXxIwsez1.6MOwu3Pm0a1ia9uC", "ALTA", TRUE, TRUE);
+    VALUES (44595596, "JORGE", "LOPEZ", "jorge.lopez@gmail.com", "$2a$12$T.WpBqM64hxGxJKdOM/8KOIz07uIXxIwsez1.6MOwu3Pm0a1ia9uC", "ALTA", TRUE, TRUE);
     
