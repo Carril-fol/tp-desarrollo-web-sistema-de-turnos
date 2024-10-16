@@ -1,3 +1,7 @@
+CREATE DATABASE sistema_de_turnos;
+
+USE sistema_de_turnos;
+
 CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dni INT UNIQUE,
@@ -12,37 +16,33 @@ CREATE TABLE usuario (
 
 CREATE TABLE medico (
     id INT AUTO_INCREMENT PRIMARY KEY,
-	id_user INT,
+	dni INT,
     matricula VARCHAR(255),
     especialidad VARCHAR(255),
     estado VARCHAR(255),
-    FOREIGN KEY (id_user) REFERENCES usuario(id)
+    FOREIGN KEY (dni) REFERENCES usuario(dni)
 );
 
 CREATE TABLE administrativo (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_user INT,
-    FOREIGN KEY (id_user) REFERENCES usuario(id)
+    dni INT,
+    FOREIGN KEY (dni) REFERENCES usuario(dni)
 );
 
 CREATE TABLE paciente (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_user INT,
-    FOREIGN KEY (id_user) REFERENCES usuario(id)
+    dni INT,
+    FOREIGN KEY (dni) REFERENCES usuario(dni)
 );
 
 CREATE TABLE turno (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_user INT,
-    id_medico INT,
+    dni_paciente INT,
+    dni_medico INT,
     fecha_atencion DATE,
     fecha_creacion DATE,
     horario TIME,
     estado VARCHAR(255),
-    FOREIGN KEY (id_medico) REFERENCES medico(id),
-    FOREIGN KEY (id_user) REFERENCES usuario(id)
+    FOREIGN KEY (dni_medico) REFERENCES medico(dni),
+    FOREIGN KEY (dni) REFERENCES usuario(dni)
 )
-
-INSERT INTO usuario (dni, nombre, apellido, email, contraseña, estado, esSuperUsuario, esStaff) 
-    VALUES (44595596, "JORGE", "LOPEZ", "jorge.lopez@gmail.com", "$2a$12$T.WpBqM64hxGxJKdOM/8KOIz07uIXxIwsez1.6MOwu3Pm0a1ia9uC", "ALTA", TRUE, TRUE);
-    
