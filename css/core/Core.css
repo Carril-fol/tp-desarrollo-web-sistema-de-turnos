@@ -4,18 +4,16 @@
     display: flex;
     justify-content: center;
 }
-
 .container-table {
     margin-top: 50px;
 }
-
-.container-buttons-table {
+.container-buttons-table-top {
     height: fit-content;
     padding: 10px 5px 5px 5px;
     border-radius: 10px 10px 0 0;
     border: 1px solid #71787b;
 }
-.container-buttons-table button {
+.container-buttons-table-top button {
     padding: 12px;
     font-size: medium;
     border: 1px solid var(--bg-white);
@@ -26,8 +24,102 @@
     transition: 0.1s;
     cursor: pointer;
 }
-.container-buttons-table button:hover {
+.container-buttons-table-top button:hover {
     color: var(--bg-dark-blue);
     border: 1px solid var(--bg-dark-blue);
     background: var(--bg-white);
+}
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+    overflow: hidden;
+    font-weight: bold;
+    box-shadow: 0 0 20px 0 var(--bg-whitish-gray);
+}
+
+.content-table thead tr {
+    background-color: var(--bg-dark-blue);
+    color: var(--bg-white);
+    text-align: left;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.container-table tbody tr {
+    border-bottom: 1px solid var(grey);
+}
+
+.container-table tbody tr:nth-of-type(even) {
+    background-color: var(--bg-whitish-gray);
+}
+
+.container-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--bg-dark-blue);
+}
+
+.container-buttons-table-aside {
+    margin: 15px;
+    padding: 50px;
+}
+.table-button-delete {
+    padding: 12px;
+    font-size: medium;
+    border: 1px solid var(--bg-white);
+    font-weight: bold;
+    border-radius: 15px;
+    color: var(--bg-whitish-gray);
+    background: var(--bg-red);
+    transition: 0.1s;
+    cursor: pointer;
+}
+.table-button-delete:hover {
+    color: var(--bg-red);
+    border: 1px solid var(--bg-red);
+    background: var(--bg-white);
+}
+
+.table-button-update {
+    padding: 12px;
+    font-size: medium;
+    border: 1px solid var(--bg-white);
+    font-weight: bold;
+    border-radius: 15px;
+    color: var(--bg-whitish-gray);
+    background: var(--bg-ocean-blue);
+    transition: 0.1s;
+    cursor: pointer;
+}
+.table-button-update:hover {
+    color: var(--bg-ocean-blue);
+    border: 1px solid var(--bg-ocean-blue);
+    background: var(--bg-white);
+}
+
+.container-table-button-top {
+    border: 1px solid var(--bg-ocean-blue);
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.table-button-add {
+    font-weight: bold;
+    color: var(--bg-ocean-blue);
+    border: 1px solid var(--bg-ocean-blue);
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--bg-white);
+    outline: none;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.table-button-add:hover {
+    color: var(--bg-white);
+    border: 1px solid var(--bg-ocean-blue);
+    background: var(--bg-ocean-blue);
 }

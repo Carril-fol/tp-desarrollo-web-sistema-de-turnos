@@ -1,35 +1,58 @@
-<?php 
-    // Importes
-    require '../../config.php';
+<?php
     require '../../models/User.php';
 
-    session_start();
+    class LoginController
+    {
+        private $userModel;
+        public $dni;
+        public $password;
 
-    // Instancia de modelo
-    $userModel = new User;
-
-    // Try - Catch
-    try {
-        // Información del formulario
-        $dni = htmlentities(addslashes($_POST["dni"]));
-        $password = htmlentities(addslashes($_POST["password"]));
-
-        $userDataLogin = $userModel->getDniAndPasswordFromUserByDni($dni);
-        $passwordHashed = $userDataLogin['contraseña'];
-
-        if (!password_verify($password, $passwordHashed)) {
-            throw new Exception("Las contraseñas no son iguales");
+        function __construct() {
+            $this->userModel = new User;
+            $this->dni = $_POST['dni'];
+            $this->password = $_POST['password'];
         }
-        
-        $userDataLogged = $userModel->getDataFromUserByDni($dni);
-        $userModel->createCookieData($userDataLogged);
 
-        header("Location: ../../views/core/home.php");
-        exit();
+        private function sanitizeInput($input) {
+            return htmlentities(addslashes($input));
+        }
+
+        private function verifyCredentials($dni, $password) {
+            $userDataLogin = $this->userModel->getDniAndPasswordFromUserByDni($dni);
+            if (!password_verify($password, $userDataLogin['contraseña'])) {
+                throw new Exception("DNI o Contraseña incorrectos.");
+            }
+        }
+
+        private function redirectToHome() {
+            header("Location: ../../views/core/home.php");
+            exit();
+        }
+
+        private function handleError($error) {
+            session_start();
+            $_SESSION['error'] = $error->getMessage();
+            header("Location: ../../views/auth/login.php");
+            exit();
+        }
+
+        public function authenticate() {
+            try {
+                $dni = $this->sanitizeInput($_POST['dni']);
+                $password = $this->sanitizeInput($_POST['password']);
+                
+                $this->verifyCredentials($dni, $password);
+    
+                $userDataLogged = $this->userModel->getDataFromUserByDni($dni);
+                $this->userModel->createCookieData($userDataLogged);
+                
+                $this->redirectToHome();
+            } catch (Exception $error) {
+                $this->handleError($error);
+            }
+        }
     }
-    catch (Exception $error) {
-        $_SESSION['error'] = $error;
-        header("Location: ../../views/auth/login.php");
-        exit();
-    }
+    
+    $loginController = new LoginController;
+    $loginController->authenticate();
 ?>

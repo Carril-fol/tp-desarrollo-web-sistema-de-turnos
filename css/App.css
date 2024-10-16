@@ -9,7 +9,7 @@
     --bg-gray: #71787b;
     --bg-whitish-gray: #e2e2e2;
     --bg-white: #ffff;
-    
+    --bg-red: red;
     --gradient-white-to-gray: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
 
 }

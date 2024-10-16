@@ -5,30 +5,28 @@ require_once __DIR__ . '/../config.php';
 class Administrative
 {
     private $db;
-    private $userModel;
 
     public function __construct()
     {
         $this->db = (new Database())->connection();
-        $this->userModel = new User;
     }
     
     private function checkIfAdministrativeExists($paramsQuery)
     {
-        $selectQuery = "SELECT id_user FROM administrativo WHERE id_user = :id_user";
+        $selectQuery = "SELECT dni FROM administrativo WHERE dni = :dni";
         $resultQuery = $this->db->prepare($selectQuery);
         $resultQuery->execute($paramsQuery);
         return $resultQuery->rowCount() > 0;
     }
 
-    public function createAdministrative(int $idUser)
+    public function createAdministrative(int $dni)
     {
-        $paramsQuery = [':id_user'=>$idUser];
+        $paramsQuery = [':dni'=>$dni];
         $checkIfAdministrativeExists = $this->checkIfAdministrativeExists($paramsQuery);
         if ($checkIfAdministrativeExists) {
             return false;
         }
-        $insertQuery = "INSERT INTO administrativo (id_user) VALUES (:id_user)";
+        $insertQuery = "INSERT INTO administrativo (dni) VALUES (:dni)";
         $resultQuery = $this->db->prepare($insertQuery);
         $resultQuery->execute($paramsQuery);
         return $resultQuery;
@@ -36,9 +34,8 @@ class Administrative
 
     public function getAdministrativeByDni($dni)
     {
-        $userData = $this->userModel->getDataFromUserByDni($dni);
-        $paramsQuery = [':id_user'=>$userData['id']];
-        $selectQuery = "SELECT * FROM administrativo WHERE id_user = :id_user";
+        $paramsQuery = [':dni'=>$dni];
+        $selectQuery = "SELECT * FROM administrativo WHERE dni = :dni";
         $resultQuery = $this->db->prepare($selectQuery);
         $resultQuery->execute($paramsQuery);
         $row = $resultQuery->fetch(PDO::FETCH_ASSOC);
