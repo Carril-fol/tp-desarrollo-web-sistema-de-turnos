@@ -4,33 +4,95 @@ require_once  __DIR__ . '/../config.php';
 class Turn
 {
     private $db;
+    private $id;
+    private $dniPatient;
+    private $dniMedic;
+    private $dateAtention;
+    private $dateCreation;
+    private $turnTime;
+    private $speciality;
 
-    public function __construct()
-    {
+    public function __construct($id = null, $dniPatient = null, $dniMedic = null, $dateAtention = null, $turnTime = null, $speciality = null) {
         $this->db = (new Database())->connection();
+        $this->dniPatient = $dniPatient;
+        $this->dniMedic = $dniMedic;
+        $this->dateAtention = $dateAtention;
+        $this->dateCreation = date("Y-m-d");
+        $this->turnTime = $turnTime;
+        $this->speciality = $speciality;
     }
 
-    public function createTurn($idUser, $idMedic, $dateAtention, $dateCreation, $turnTime)
-    {   
-        $paramsQuery = [
-            ":idUser" => $idUser, 
-            ":idMedic" => $idMedic, 
-            ":dateAtention" => $dateAtention, 
-            ":dateCreation" => $dateCreation, 
-            ":turnTime" => $turnTime
-        ];
-        $insertQuery = "INSERT INTO turno (id_user, id_medico, fecha_atencion, fecha_creacion, horario, estado)
-            VALUES (:idUser, :idMedic, :dateAtention, :dateCreation, :turnTime, 'PENDIENTE')";
-        $resultQuery = $this->db->prepare($insertQuery);
-        $result = $resultQuery->execute($paramsQuery);
-        if (!$result) {
-            return false;
+    public function getId() {
+        return $this->dniPatient;
+    }
+
+    public function setId($id) {
+        if ($id < 0) {
+            throw new Exception("");
         }
-        return true;
+        $this->id = $id;
     }
 
-    public function getAllTurns()
-    {
+    public function getDniPatient() {
+        return $this->dniPatient;
+    }
+
+    public function setDniPatient($dniPatient) {
+        $this->dniPatient = $dniPatient;
+    }
+
+    public function getDniMedic() {
+        return $this->dniMedic;
+    }
+
+    public function setDniMedic($dniMedic) {
+        $this->dniMedic = $dniMedic;
+    }
+
+    public function getDateAtention() {
+        return $this->dateAtention;
+    }
+
+    public function setDateAtention($dateAtention) {
+        $dateToday = date("Y-m-d");
+        if ($dateAtention < $dateToday) {
+            throw new Exception("La fecha de atención no puede ser menor a la de hoy.");
+        }
+        $this->dateAtention = $dateAtention;
+    }
+
+    public function getTurnTime() {
+        return $this->turnTime;
+    }
+
+    public function setTurnTime($turnTime) {
+        $this->turnTime = $turnTime;
+    }
+
+    public function getSpeciality() {
+        return $this->speciality;
+    }
+
+    public function setSpeciality($speciality) {
+        $this->speciality = $speciality;
+    }
+
+    public function createTurn(){   
+        $paramsQuery = [
+            ":dniPatient" => $this->dniPatient, 
+            ":dniMedic" => $this->dniMedic, 
+            ":dateAtention" => $this->dateAtention, 
+            ":dateCreation" =>  $this->dateCreation, 
+            ":turnTime" => $this->turnTime,
+            ":speciality" => $this->speciality
+        ];
+        $insertQuery = "INSERT INTO turno (dni_paciente, dni_medico, fecha_atencion, fecha_creacion, horario, estado, especialidad)
+            VALUES (:dniPatient, :dniMedic, :dateAtention, :dateCreation, :turnTime, 'PENDIENTE', :speciality)";
+        $resultQuery = $this->db->prepare($insertQuery);
+        return $resultQuery->execute($paramsQuery);
+    }
+
+    public function getAllTurns(){
         $selectQuery = "SELECT * FROM turno";
         $resultQuery = $this->db->prepare($selectQuery);
         $resultQuery->execute();
@@ -38,5 +100,12 @@ class Turn
         return $rows;
     }
 
+    public function deleteTurnById() {
+        $paramsQuery = [":id" => $this->id];
+        $deleteQuery = "UPDATE turno SET estado = 'CANCELADO' WHERE id = :id";
+        $resultQuery = $this->db->prepare($deleteQuery);
+        $resultQuery->execute($paramsQuery);
+        return $resultQuery->rowCount();
+    }
 }
 ?>
