@@ -42,6 +42,7 @@ CREATE TABLE turno (
     fecha_atencion DATE,
     fecha_creacion DATE,
     horario TIME,
+    especialidad VARCHAR(255),
     estado VARCHAR(255),
     FOREIGN KEY (dni_medico) REFERENCES medico(dni),
     FOREIGN KEY (dni) REFERENCES usuario(dni)
