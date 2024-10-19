@@ -38,8 +38,8 @@
 
         public function authenticate() {
             try {
-                $dni = $this->sanitizeInput($_POST['dni']);
-                $password = $this->sanitizeInput($_POST['password']);
+                $dni = $this->sanitizeInput($this->dni);
+                $password = $this->sanitizeInput($this->password);
                 
                 $this->verifyCredentials($dni, $password);
     
