@@ -54,7 +54,7 @@ class Medic
 
     public function changeStatusMedic($dniMedic, $status) {
         $paramsQuery = [":dniMedic" => $dniMedic, ":status" => $status];
-        $selectQuery = "UPDATE medico set estado = :status WHERE dni = :dniMedic";
+        $selectQuery = "UPDATE medico SET estado = :status WHERE dni = :dniMedic";
         $resultQuery = $this->db->prepare($selectQuery);
         $resultQuery->execute($paramsQuery);
         return $resultQuery->rowCount() > 0;
