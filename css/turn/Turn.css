@@ -1,5 +1,4 @@
-.section-formulario-login,
-.section-formulario-alta {
+.section-turn {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -7,8 +6,7 @@
     align-items: center;
 }
 
-.formulario-login,
-.formulario-alta {
+.formulario-turno-creacion {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,8 +18,8 @@
     border-radius: 10px;
     box-shadow: 2px 2px #dbd8e3;
 }
-.formulario-login input,
-.formulario-alta input {
+
+.formulario-turno-creacion input {
     padding: 10px;
     margin-bottom: 30px;
     width: 250px;
@@ -29,16 +27,16 @@
     border-bottom: 1px solid gray;
     transition: 0.3s ease-in-out;
 }
-.formulario-login input:focus
-.formulario-alta input:focus {
+.formulario-turno-creacion input:focus {
     outline: none;
     border: none;
     border-bottom: 1px solid var(--bg-dark-blue);
 }
 
-.formulario-login button,
-.formulario-alta button {
+.formulario-turno-creacion button {
+    margin-top: 20px;
     padding: 12px;
+    width: 100px;
     border: 2px solid var(--bg-white);
     font-weight: bold;
     border-radius: 25px;
@@ -47,30 +45,13 @@
     transition: 0.1s;
     cursor: pointer;
 }
-
-.formulario-login button:hover,
-.formulario-alta button:hover {
+.formulario-turno-creacion button:hover {
     color: var(--bg-dark-blue);
     border: 2px solid var(--bg-dark-blue);
     background: var(--bg-white);
 }
 
-.formulario-login-logo-titulo,
-.formulario-alta-logo-titulo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.formulario-login-logo-titulo img,
-.formulario-alta-logo-titulo img {
-    width: 100px;
-    height: 100px;
-}
-
-.formulario-alta select {
+.formulario-turno-creacion select {
     padding: 10px;
     margin-bottom: 30px;
     width: 250px;
@@ -79,22 +60,12 @@
     transition: 0.3s ease-in-out;
 }
 
-.contenedor-opciones {
+.formulario-turno-creacion div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 10px; 
 }
-
-.contenedor-opcion-socio {
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-    width: 100%; 
-    border: 2px solid red;
-}
-
-.contenedor-opcion-socio label {
-    margin-right: 10px;
+.formulario-turno-creacion div img { 
+    width: 100px;
+    height: 100px;
 }
