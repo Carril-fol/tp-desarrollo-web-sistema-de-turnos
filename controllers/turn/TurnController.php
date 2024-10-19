@@ -37,7 +37,7 @@
         }
 
         private function createTurn($turnData) {
-            $dniMedic = $this->getMedicForTurn($turnData['speciality'])[0];
+            $dniMedic = $this->getMedicForTurn($turnData['speciality'])['dni'];
             $this->medicModel->changeStatusMedic($dniMedic, "OCUPADO");
     
             $this->turnModel->setDniPatient($turnData['dniPatient']);
